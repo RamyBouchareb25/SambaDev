@@ -16,7 +16,36 @@ class _ProfileState extends State<Profile> {
                  appBar: appBar(context: context),
                  body: Column(children: [
                   Text('>Profile'),
-                  
+                  Row(children: [Image(image: AssetImage('Assets/avatar.png')),
+                       Column(children: [
+                        Row(
+                         children: [
+                           Text('Nom'),
+                           Text('Leghrib'),
+
+                         ],
+                       ),
+                        Row(
+                         children: [
+                           Text('Nom'),
+                           Text('Leghrib'),
+
+                         ],
+                       ),
+                          Row(
+                         children: [
+                           Text('Prenom'),
+                           Text('Rami'),
+
+                         ],
+                       ),
+                        Row(
+                         children: [
+                           Text('Lieu'),
+                           Text('Ain Benian'),
+                         ],
+                       ),                
+                       ],)],)
                  ]),
                  bottomNavigationBar: bottomNavBar(selectedPage: 4, context: context),
                  ));

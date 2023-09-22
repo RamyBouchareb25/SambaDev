@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sambadev/classes/classes.dart';
+import 'package:sambadev/models/auth.dart';
 import 'package:sambadev/widgets/widgets.dart';
 
 class Ressources extends StatefulWidget {
@@ -23,7 +24,7 @@ class _RessourcesState extends State<Ressources> {
                                  image: AssetImage("Assets/Background-2.png"),
                                  fit: BoxFit.fitWidth),
                             ),
-                       child: moduleButton(modulesInfo[1]!)),
+                       child: moduleButton(modulesInfo[Auth.student!.semestre]!)),
                       bottomNavigationBar: bottomNavBar(selectedPage: 0,context: context), 
                      ));
   }
