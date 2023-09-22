@@ -14,7 +14,15 @@ class _HomeState extends State<Home> {
     BuildContext ctext = context;
     return SafeArea(
         child:  Scaffold(
-     
+           appBar: appBar(context: ctext),
+           body: Container(decoration: const BoxDecoration(
+            color: Color.fromRGBO(56, 125, 191, 0.25),
+            image: DecorationImage(
+                image: AssetImage("Assets/Background-2.png"),
+                fit: BoxFit.fitWidth),
+          ),
+          child: Annoncement('Rami', 'En raison de circonstances exceptionnelles, notre cours se déroulera en ligne cette fois-ci. le cour sera le 24 novembre a 15:00', '14:30', 3, 'Isil-B'),),
+           
     ));
   }
 }
