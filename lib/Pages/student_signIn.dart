@@ -25,20 +25,6 @@ class _StudentSignInState extends State<StudentSignIn> {
                 image: AssetImage("Assets/Background-1.png"),
                 fit: BoxFit.fitWidth),
           ),
-<<<<<<< Updated upstream
-          child: SingleChildScrollView(
-            child: Column(children: [
-              SizedBox(
-                height: 150,
-              ),
-              Image.asset(
-                "Assets/Logo.png",
-                height: 150,
-                width: size.width,
-              ),
-          
-              Form(
-=======
           child: Column(children: [
             const SizedBox(
               height: 150,
@@ -50,7 +36,6 @@ class _StudentSignInState extends State<StudentSignIn> {
             ),
             SingleChildScrollView(
               child: Form(
->>>>>>> Stashed changes
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -70,10 +55,10 @@ class _StudentSignInState extends State<StudentSignIn> {
                   ],
                 ),
               )
-            ]),
+        )]),
           ),
         ),
-      ),
-    );
+      );
+    
   }
 }

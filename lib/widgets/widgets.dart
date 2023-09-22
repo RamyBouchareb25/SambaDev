@@ -32,14 +32,9 @@ Widget Forms(TextEditingController controller, String label) {
 // }
 
 class Button extends StatelessWidget {
-<<<<<<< Updated upstream
-  Button(
-      {required this.title,
-=======
   const Button(
       {super.key,
       required this.title,
->>>>>>> Stashed changes
       required this.onPressed,
       required this.backgroundColor,
       required this.foregnColor});
