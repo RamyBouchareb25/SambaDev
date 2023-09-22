@@ -11,6 +11,9 @@ class Message {
   String emetteur;
   String messageValue;
   Message(this.recepteur, this.messageValue, this.emetteur);
+  factory Message.fromMap(Map<String, dynamic> map) {
+    return Message(map['recepteur'], map['messageValue'], map['emetteur']);
+  }
   Map<String, dynamic> toMap() {
     return {
       'recepteur': recepteur,
@@ -61,6 +64,28 @@ class Etudiant {
       this.annoncements,
       this.notes);
 
+  factory Etudiant.fromMap(Map<String, dynamic> map) {
+    return Etudiant(
+        map['nom'],
+        map['prenom'],
+        map['dateDeNaissance'],
+        map['lieuDeNaissance'],
+        map['wilaya'],
+        map['adresse'],
+        map['nationalite'],
+        map['ville'],
+        map['numero'],
+        map['email'],
+        map['anneeDeBac'],
+        map['filiere'],
+        map['moyenneGeneral'],
+        map['section'],
+        map['groupe'],
+        map['matricule'],
+        map['annoncements'],
+        map['notes']);
+  }
+
   Map<String, dynamic> toMap() {
     return {
       'nom': nom,
@@ -92,6 +117,11 @@ class Parent {
   double numero;
   Etudiant fils;
 
+  factory Parent.fromMap(Map<String, dynamic> map) {
+    return Parent(
+        map['nom'], map['prenom'], map['email'], map['numero'], map['fils']);
+  }
+
   Parent(this.nom, this.prenom, this.email, this.numero, this.fils);
   Map<String, dynamic> toMap() {
     return {
@@ -117,6 +147,20 @@ class Teacher {
   File diplome;
   Teacher(this.nom, this.prenom, this.email, this.numero, this.module,
       this.classesEnseignees, this.sections, this.cv, this.diplome);
+
+  factory Teacher.fromMap(Map<String, dynamic> map) {
+    return Teacher(
+        map['nom'],
+        map['prenom'],
+        map['email'],
+        map['numero'],
+        map['module'],
+        map['classesEnseignees'],
+        map['sections'],
+        map['cv'],
+        map['diplome']);
+  }
+
   Map<String, dynamic> toMap() {
     return {
       'nom': nom,
