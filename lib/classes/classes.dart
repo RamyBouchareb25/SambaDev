@@ -1,17 +1,22 @@
 import 'dart:ffi';
-import 'dart:html';
+import 'dart:io';
 
-enum TypeRessource { TD, Cours, Examens, Enregistrement }
+enum TypeRessource { tD, cours, examens, enregistrement }
 
-enum TypeSeance { TD, Cours, TP, Examen, Intero, SeanceEnLigne }
+enum TypeSeance { tD, cours, tP, examen, intero, seanceEnLigne }
 
 //message
-class message {
+class Message {
   String recepteur;
+  String emetteur;
   String messageValue;
-  message(this.recepteur, this.messageValue);
+  Message(this.recepteur, this.messageValue, this.emetteur);
   Map<String, dynamic> toMap() {
-    return {'recepteur': recepteur, 'messageValue': messageValue};
+    return {
+      'recepteur': recepteur,
+      'messageValue': messageValue,
+      'emetteur': emetteur
+    };
   }
 }
 
@@ -54,8 +59,7 @@ class Etudiant {
       this.groupe,
       this.matricule,
       this.annoncements,
-      this.notes
-      );
+      this.notes);
 
   Map<String, dynamic> toMap() {
     return {
@@ -108,11 +112,11 @@ class Teacher {
   String numero;
   String? module;
   List<Char>? sections;
-  List<classeEnseigne> classesEnseignees;
-  File CV;
+  List<ClasseEnseigne> classesEnseignees;
+  File cv;
   File diplome;
   Teacher(this.nom, this.prenom, this.email, this.numero, this.module,
-      this.classesEnseignees, this.sections, this.CV, this.diplome);
+      this.classesEnseignees, this.sections, this.cv, this.diplome);
   Map<String, dynamic> toMap() {
     return {
       'nom': nom,
@@ -210,10 +214,10 @@ Map<int, List<String>> modulesInfo = {
 };
 
 //la classe etudie
-class classeEnseigne {
+class ClasseEnseigne {
   Char section;
   int groupe;
-  classeEnseigne(this.section, this.groupe);
+  ClasseEnseigne(this.section, this.groupe);
 }
 
 //Notes
