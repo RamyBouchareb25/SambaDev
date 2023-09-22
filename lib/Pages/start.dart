@@ -7,7 +7,10 @@ import 'package:sambadev/models/icomoon_icons.dart';
 class Start extends StatelessWidget {
   const Start({super.key});
   Widget button(
-      {required String title, required Size size, required Function() onTap}) {
+      {required String title,
+      required Size size,
+      required Function() onTap,
+      required IconData icon}) {
     return Column(children: [
       InkWell(
         onTap: onTap,
@@ -16,8 +19,8 @@ class Start extends StatelessWidget {
           width: size.width * 0.25,
           decoration: BoxDecoration(
               color: primaryColor, borderRadius: BorderRadius.circular(20)),
-          child: const Icon(
-            Icomoon.Parent,
+          child: Icon(
+            icon,
             color: Colors.white,
             size: 50,
           ),
@@ -63,6 +66,7 @@ class Start extends StatelessWidget {
                     crossAxisCount: 2,
                     children: [
                       button(
+                        icon: Icomoon.Student_Male,
                         title: "Student",
                         size: size,
                         onTap: () {
@@ -72,16 +76,19 @@ class Start extends StatelessWidget {
                         },
                       ),
                       button(
+                        icon: Icomoon.Teacher,
                         title: "Teacher",
                         size: size,
                         onTap: () {},
                       ),
                       button(
+                        icon: Icons.person,
                         title: "Admin",
                         size: size,
                         onTap: () {},
                       ),
                       button(
+                        icon: Icomoon.Parent,
                         title: "Parent",
                         size: size,
                         onTap: () {},
