@@ -1,5 +1,10 @@
+import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sambadev/global.dart';
+import 'package:sambadev/models/auth.dart';
+import 'package:sambadev/widget_tree.dart';
 import 'package:sambadev/widgets/widgets.dart';
 
 class StudentSignIn extends StatefulWidget {
@@ -10,11 +15,37 @@ class StudentSignIn extends StatefulWidget {
 }
 
 class _StudentSignInState extends State<StudentSignIn> {
+  final GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  String? errorMessage;
+  bool _isFormValid = false;
+  bool _isLoading = false;
+  void _validateForm() {
+    if (formkey.currentState!.validate()) {
+      setState(() {
+        _isFormValid = true;
+      });
+    } else {
+      setState(() {
+        _isFormValid = false;
+      });
+    }
+  }
+
+  Future<void> signInWithEmailAndPassword() async {
+    try {
+      await Auth().signInWithEMailAndPassword(
+          email: email.text.trim(), password: password.text.trim());
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        errorMessage = e.message;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController email = TextEditingController();
-    TextEditingController password = TextEditingController();
-
     final Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -38,6 +69,7 @@ class _StudentSignInState extends State<StudentSignIn> {
                 child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Form(
+                key: formkey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -48,8 +80,24 @@ class _StudentSignInState extends State<StudentSignIn> {
                           fontWeight: FontWeight.bold,
                           fontSize: 25),
                     ),
-                    Forms(email, 'email'),
-                    Forms(password, 'password'),
+                    forms(
+                        controller: email,
+                        label: 'email',
+                        onChanged: _validateForm,
+                        validator: (value) {
+                          return EmailValidator.validate(value!.trim())
+                              ? null
+                              : "Please enter a valid email";
+                        }),
+                    forms(
+                        controller: password,
+                        label: 'password',
+                        onChanged: _validateForm,
+                        validator: (value) {
+                          return value!.isEmpty
+                              ? "You Must Enter Your Password"
+                              : null;
+                        }),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Row(
@@ -63,7 +111,34 @@ class _StudentSignInState extends State<StudentSignIn> {
                           ),
                           Button(
                             title: 'Submit',
-                            onPressed: () {},
+                            onPressed: () {
+                              if (formkey.currentState!.validate()) {
+                                setState(() {
+                                  _isLoading = true;
+                                });
+                                signInWithEmailAndPassword().then((value) {
+                                  if (errorMessage == null) {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const WidgetTree()));
+                                  } else {
+                                    if (kDebugMode) {
+                                      print(errorMessage.toString());
+                                    }
+                                    setState(() {
+                                      _isLoading = false;
+                                    });
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(
+                                            content: Text(errorMessage ??
+                                                "Unknown Error")));
+                                    errorMessage = null;
+                                  }
+                                });
+                              }
+                            },
                             backgroundColor: primaryColor,
                             foregnColor: Colors.white,
                           ),
