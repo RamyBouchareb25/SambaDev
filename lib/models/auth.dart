@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:sambadev/classes/classes.dart';
 
 class Auth {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   User? get currentUser => _auth.currentUser;
   Stream<User?> get authStateChanges => _auth.authStateChanges();
+  static Etudiant? student;
   // TODO : create private field for user class
   // TODO : create getter for user class
   // TODO : create setter for user class

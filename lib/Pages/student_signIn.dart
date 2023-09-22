@@ -1,7 +1,12 @@
+import 'dart:math';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:sambadev/classes/classes.dart';
 import 'package:sambadev/global.dart';
 import 'package:sambadev/models/auth.dart';
 import 'package:sambadev/widget_tree.dart';
@@ -117,6 +122,22 @@ class _StudentSignInState extends State<StudentSignIn> {
                                   _isLoading = true;
                                 });
                                 signInWithEmailAndPassword().then((value) {
+                                  FirebaseFirestore.instance
+                                      .collection("Etudiants")
+                                      .where("uid",
+                                          isEqualTo: Auth().currentUser!.uid)
+                                      .get()
+                                      .then((value) {
+                                    var etudiant;
+                                    if (value.docs.isNotEmpty) {
+                                      for (var element in value.docs) {
+                                        etudiant =
+                                            Etudiant.fromMap(element.data());
+                                      }
+                                    }
+                                    Auth.student = etudiant;
+                                  });
+
                                   if (errorMessage == null) {
                                     Navigator.push(
                                         context,
