@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sambadev/Pages/home.dart';
+import 'package:sambadev/Pages/rooms.dart';
 import 'package:sambadev/Pages/ressources.dart';
 import 'package:sambadev/global.dart';
 import 'package:sambadev/models/icomoon_icons.dart';
@@ -54,11 +55,13 @@ class Button extends StatelessWidget {
       required this.title,
       required this.onPressed,
       required this.backgroundColor,
-      required this.foregnColor});
+      required this.foregnColor,
+      this.isloading});
   final String title;
   final Function()? onPressed;
   final Color backgroundColor;
   final foregnColor;
+  final bool? isloading;
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +69,11 @@ class Button extends StatelessWidget {
       style: ElevatedButton.styleFrom(
           foregroundColor: foregnColor, backgroundColor: backgroundColor),
       onPressed: onPressed,
-      child: Text(title),
+      child: isloading == null || !isloading!
+          ? Text(title)
+          : const CircularProgressIndicator(
+              color: Colors.white,
+            ),
     );
   }
 }
@@ -79,7 +86,7 @@ Widget bottomNavBar(
     selectedItemColor: primaryColor,
     unselectedItemColor: Colors.grey,
     iconSize: 20,
-    items: [
+    items: const [
       BottomNavigationBarItem(
         icon: Icon(Icomoon.Resources),
         label: "Ressources",
@@ -108,7 +115,7 @@ Widget bottomNavBar(
           Navigator.pushReplacement(
               context,
               CustomPageRoute(
-                child: Ressources(),
+                child: const Ressources(),
                 axis: AxisDirection.left,
               ));
           break;
@@ -118,7 +125,7 @@ Widget bottomNavBar(
           Navigator.pushReplacement(
               context,
               CustomPageRoute(
-                child: Home(),
+                child: const Rooms(),
                 axis: AxisDirection.left,
               ));
           break;
@@ -128,7 +135,7 @@ Widget bottomNavBar(
           Navigator.pushReplacement(
               context,
               CustomPageRoute(
-                child: Home(),
+                child: const Home(),
                 axis: AxisDirection.left,
               ));
           break;
@@ -139,7 +146,7 @@ Widget bottomNavBar(
           Navigator.pushReplacement(
               context,
               CustomPageRoute(
-                child: Home(),
+                child: const Home(),
                 axis: AxisDirection.left,
               ));
           break;
@@ -155,8 +162,7 @@ Widget Annoncement(
     padding: const EdgeInsets.all(8.0),
     child: Container(
         decoration: BoxDecoration(
-            color: Color.fromRGBO(12, 131, 227, 1),
-            borderRadius: BorderRadius.circular(20)),
+            gradient: gradient, borderRadius: BorderRadius.circular(20)),
         child: Column(
           children: [
             Padding(
@@ -166,42 +172,33 @@ Widget Annoncement(
                 children: [
                   Row(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
-                      Image(image: AssetImage('Assets/avatar.png')),
-                      SizedBox(
+                      const Image(image: AssetImage('Assets/avatar.png')),
+                      const SizedBox(
                         width: 5,
                       ),
                       Column(
                         children: [
-                          Text(
-                            auteur,
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          Text(
-                            heure,
-                            style: TextStyle(color: Colors.white),
-                          ),
+                          Text(auteur),
+                          Text(heure),
                         ],
                       ),
                     ],
                   ),
-                  Container(
+                  SizedBox(
                     width: 50,
                     child: Column(
                       children: [
                         Container(
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 color: accentColor,
                                 borderRadius: BorderRadiusDirectional.all(
                                     Radius.circular(50))),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                'G' + groupe.toString(),
-                                style: TextStyle(color: Colors.white),
-                              ),
+                              child: Text('G$groupe'),
                             )),
                       ],
                     ),
@@ -211,10 +208,7 @@ Widget Annoncement(
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(
-                contenu,
-                style: TextStyle(color: Colors.white),
-              ),
+              child: Text(contenu),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -225,15 +219,9 @@ Widget Annoncement(
                       Icons.favorite,
                       color: isPressed ? Colors.red : Colors.grey,
                     )),
-                Icon(
-                  Icomoon.Comment,
-                  color: Colors.white,
-                ),
-                Text(
-                  'Commentaire',
-                  style: TextStyle(color: Colors.white),
-                ),
-                SizedBox(
+                const Icon(Icomoon.Comment),
+                const Text('Commentaire'),
+                const SizedBox(
                   width: 10,
                 )
               ],
@@ -277,31 +265,27 @@ class CustomPageRoute extends PageRouteBuilder {
 
 Widget moduleButton(List<String> modules) {
   return GridView.builder(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
       ),
       itemCount: modules.length,
       itemBuilder: (BuildContext context, int index) {
-             return GestureDetector(
-              onTap: () {
-                
-              },
-               child: Container(
-                
-                margin: EdgeInsets.all(10),
-                padding: EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  
-                  color:Color.fromRGBO(12, 131, 227, 1) ,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Center(
-                  child: Text(
-                    modules[index],
-                    style: TextStyle(fontSize: 18),
-                  ),
-                ),
-                         ),
-             );
+        return GestureDetector(
+          onTap: () {},
+          child: Container(
+            margin: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: const Color.fromRGBO(12, 131, 227, 1),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Center(
+              child: Text(
+                modules[index],
+                style: const TextStyle(fontSize: 18),
+              ),
+            ),
+          ),
+        );
       });
 }
