@@ -43,6 +43,7 @@ dependencies:
   firebase_messaging: ^14.6.8
   flutter_local_notifications: ^15.1.1
   rxdart: ^0.27.7
+  email_validator: '^2.1.16'
 
 dev_dependencies:
   flutter_test:

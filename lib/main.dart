@@ -2,6 +2,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:sambadev/Pages/student_signIn.dart';
 import 'package:sambadev/models/manager.dart';
 import 'package:sambadev/widget_tree.dart';
 import 'firebase_options.dart';
@@ -71,7 +72,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF387DBF)),
         useMaterial3: true,
       ),
-      home: const WidgetTree(),
+      home: const StudentSignIn(),
     );
   }
 }
