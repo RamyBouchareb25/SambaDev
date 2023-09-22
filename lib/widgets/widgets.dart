@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sambadev/Pages/home.dart';
 import 'package:sambadev/global.dart';
+import 'package:sambadev/models/icomoon_icons.dart';
 
 Widget forms(
     {required TextEditingController controller,
@@ -67,116 +69,180 @@ class Button extends StatelessWidget {
   }
 }
 
-// Widget bottomNavBar({selectedPage, required BuildContext context}) {
-//   return BottomNavigationBar(
-//     type: BottomNavigationBarType.fixed,
-//     backgroundColor: Colors.white,
-//     selectedItemColor: primaryColor,
-//     unselectedItemColor: Colors.grey,
-//     iconSize: 20,
-//     items:  [
-//       BottomNavigationBarItem(
-//         icon: Icon(Icons.),
-//         label: "Chats",
-//       ),
-//       BottomNavigationBarItem(
-//         icon: Icon(Icons.),
-//         label: "Calls",
-//       ),
-//        BottomNavigationBarItem(
-//         icon: ,
-//         label: "People",
-//       ),
-//       BottomNavigationBarItem(
-//         icon: ,
-//         label: "People",
-//       ),
-//       BottomNavigationBarItem(
-//         icon: Icon(Icomoon.Settings),
-//         label: "Settings",
-//       ),
-//     ],
-//     currentIndex: selectedPage,
-//     onTap: (value) {
-//       switch (value) {
-//         case 0:
-//           // Navigator.popUntil(context, (route) => !route.isCurrent);
-//           // Navigator.push(
-//           //     context, MaterialPageRoute(builder: (context) => const Home()));
-//           Navigator.pushReplacement(
-//               context,
-//               CustomPageRoute(
-//                 child: const Home(),
-//                 axis: AxisDirection.left,
-//               ));
-//           break;
-//         case 1:
-//           // Navigator.push(
-//           //     context, MaterialPageRoute(builder: (context) => const Home()));
-//           break;
-//         case 2:
-//           // Navigator.push(
-//           //     context, MaterialPageRoute(builder: (context) => const Home()));
-//           break;
-//         case 3:
-//           // Navigator.popUntil(context, (route) => !route.isCurrent);
-//           // Navigator.push(context,
-//           //     MaterialPageRoute(builder: (context) => const SettingsPage()));
-//           Navigator.pushReplacement(
-//               context,
-//               CustomPageRoute(
-//                 child: const SettingsPage(),
-//                 axis: AxisDirection.right,
-//               ));
-//           break;
-//         default:
-//       }
-//     },
-//   );
-// }
+Widget bottomNavBar({required int selectedPage, required BuildContext context}) {
+  return BottomNavigationBar(
+    type: BottomNavigationBarType.fixed,
+    backgroundColor: Colors.white,
+    selectedItemColor: primaryColor,
+    unselectedItemColor: Colors.grey,
+    iconSize: 20,
+    items:  [
+      BottomNavigationBarItem(
+        icon: Icon(Icomoon.Resources),
+        label: "Ressources",
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icomoon.Chats),
+        label: "Chat",
+      ),
+       BottomNavigationBarItem(
+        icon: Icon(Icomoon.News),
+        label: ''
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icomoon.Time),
+        label: "Emploi",
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icomoon.Person),
+        label: "Profile",
+      ),
+    ],
+    currentIndex: selectedPage,
+    onTap: (value) {
+      switch (value) {
+        case 0:
+          // Navigator.popUntil(context, (route) => !route.isCurrent);
+          // Navigator.push(
+          //     context, MaterialPageRoute(builder: (context) => const Home()));
+          Navigator.pushReplacement(
+              context,
+              CustomPageRoute(
+                child:  Home(),
+                axis: AxisDirection.left,
+              ));
+          break;
+        case 1:
+          // Navigator.push(
+          //     context, MaterialPageRoute(builder: (context) => const Home()));
+          Navigator.pushReplacement(
+              context,
+              CustomPageRoute(
+                child:  Home(),
+                axis: AxisDirection.left,
+              ));
+          break;
+        case 2:
+          // Navigator.push(
+          //     context, MaterialPageRoute(builder: (context) => const Home()));
+          Navigator.pushReplacement(
+              context,
+              CustomPageRoute(
+                child:  Home(),
+                axis: AxisDirection.left,
+              ));
+          break;
+        case 3:
+          // Navigator.popUntil(context, (route) => !route.isCurrent);
+          // Navigator.push(context,
+          //     MaterialPageRoute(builder: (context) => const SettingsPage()));
+         Navigator.pushReplacement(
+              context,
+              CustomPageRoute(
+                child:  Home(),
+                axis: AxisDirection.left,
+              ));
+          break;
+        default:
+      }
+    },
+  );
+}
 Widget Annoncement(
-    String auteur, String contenu, String heure, int groupe, String section) {
-  return Container(
-    decoration: BoxDecoration(gradient: LinearGradient(colors: [accentColor,primaryColor])),
-      child: Column(
-    children: [
-      Row(
-        children: [
-          Image(image: AssetImage('Assets/avatar.png')),
-          Column(
+    String auteur, String contenu, String heure, int groupe,bool isPressed) {
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Container(
+      
+      decoration: BoxDecoration(gradient:gradient,
+      borderRadius: BorderRadius.circular(20)
+      ),
+        child: Column(
             children: [
-              Text(auteur),
-              Text(heure),
+        Padding(
+          padding: const EdgeInsets.only(top:8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  SizedBox(width: 10,),
+                  Image(image: AssetImage('Assets/avatar.png')),
+                  SizedBox(width: 5,),
+                  Column(
+                    children: [
+                      Text(auteur),
+
+                      Text(heure),
+                    ],
+                  ),
+                ],
+              ),
+              Container(
+                width: 50,
+                child: Column(
+                  children: [
+                               Container(                     
+                                decoration: BoxDecoration(
+                                  color: accentColor,
+                                  borderRadius: BorderRadiusDirectional.all(Radius.circular(50))),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text('G'+groupe.toString()),
+                                )),
+                                
+                               ],
+                ),
+              )
             ],
           ),
-          Container(
-            width: 50,
-            child: Column(
-              children: [Container(
-                            decoration: BoxDecoration(
-                              color: accentColor,
-                              borderRadius: BorderRadiusDirectional.only(topStart: Radius.circular(5),topEnd: Radius.circular(5))),
-                           child: Padding(
-                             padding: const EdgeInsets.all(8.0),
-                             child: Text(section),
-                           )), 
-                           SizedBox(height: 1,),
-                           Container(
-                            
-                            decoration: BoxDecoration(
-                              color: accentColor,
-                              borderRadius: BorderRadiusDirectional.only(bottomEnd: Radius.circular(5),bottomStart: Radius.circular(5))),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 4,horizontal: 19),
-                              child: Text(groupe.toString()),
-                            )),
-                            
-                           ],
-            ),
-          )
-        ],
-      ),
-      Text(contenu),
-    ],
-  ));
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(contenu),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [IconButton(onPressed: (){
+              
+            }, 
+            icon: Icon(Icons.favorite,color: isPressed? Colors.red :Colors.grey,)),
+           Icon(Icomoon.Comment),
+           Text('Commentaire'),
+           SizedBox(width: 10,)
+        ],)
+            ],
+          )),
+  );
+}
+class CustomPageRoute extends PageRouteBuilder {
+  CustomPageRoute({required this.child, required this.axis})
+      : super(pageBuilder: (context, animation, secondaryAnimation) => child);
+  final Widget child;
+  final AxisDirection axis;
+  Offset _offset(AxisDirection axis) {
+    switch (axis) {
+      case AxisDirection.up:
+        return const Offset(0, -1);
+      case AxisDirection.down:
+        return const Offset(0, 1);
+      case AxisDirection.left:
+        return const Offset(-1, 0);
+      case AxisDirection.right:
+        return const Offset(1, 0);
+    }
+  }
+
+  @override
+  Widget buildTransitions(BuildContext context, Animation<double> animation,
+          Animation<double> secondaryAnimation, Widget child) =>
+      SlideTransition(
+          position: Tween<Offset>(
+            begin: _offset(axis),
+            end: Offset.zero,
+          ).animate(animation),
+          child: child);
+
+  @override
+  Duration get transitionDuration => const Duration(milliseconds: 250);
 }

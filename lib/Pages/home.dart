@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sambadev/widgets/widgets.dart';
 
 class Home extends StatefulWidget {
-  const Home({super.key});
+ const  Home({super.key});
 
   @override
   State<Home> createState() => _HomeState();
@@ -21,8 +21,14 @@ class _HomeState extends State<Home> {
                 image: AssetImage("Assets/Background-2.png"),
                 fit: BoxFit.fitWidth),
           ),
-          child: Annoncement('Rami', 'En raison de circonstances exceptionnelles, notre cours se déroulera en ligne cette fois-ci. le cour sera le 24 novembre a 15:00', '14:30', 3, 'Isil-B'),),
-           
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Annoncement('Rami', 'En raison de circonstances exceptionnelles, notre cours se déroulera en ligne cette fois-ci. le cour sera le 24 novembre a 15:00', '14:30', 3,false),
+              ],
+            ),
+          ),),
+          bottomNavigationBar: bottomNavBar(selectedPage: 0,context: context), 
     ));
   }
 }
