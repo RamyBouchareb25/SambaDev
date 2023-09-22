@@ -36,6 +36,7 @@ class Etudiant {
   String ville;
   int numero;
   String email;
+  int annee;
   int anneeDeBac;
   String filiere;
   double? moyenneGeneral;
@@ -45,6 +46,7 @@ class Etudiant {
   List<Annoncement>? annoncements;
   List<Note>? notes;
   Etudiant(
+      this.annee,
       this.nom,
       this.prenom,
       this.dateDeNaissance,
@@ -83,6 +85,7 @@ class Etudiant {
         map['groupe'],
         map['matricule'],
         map['annoncements'],
+        map['annee'],
         map['notes']);
   }
 
@@ -104,7 +107,8 @@ class Etudiant {
       'section': section,
       'groupe': groupe,
       'matricule': matricule,
-      'annoncements': annoncements
+      'annoncements': annoncements,
+      'annee': annee
     };
   }
 }

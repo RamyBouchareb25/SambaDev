@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sambadev/global.dart';
 
@@ -9,11 +8,12 @@ Widget Forms(TextEditingController controller, String label) {
         controller: controller,
         decoration: InputDecoration(
           labelText: label,
-          labelStyle: TextStyle(color: accentColor), // Optional label color
-          enabledBorder: UnderlineInputBorder(
+          labelStyle:
+              const TextStyle(color: accentColor), // Optional label color
+          enabledBorder: const UnderlineInputBorder(
             borderSide: BorderSide(color: accentColor), // Bottom border color
           ),
-          focusedBorder: UnderlineInputBorder(
+          focusedBorder: const UnderlineInputBorder(
             borderSide: BorderSide(
                 color: accentColor), // Bottom border color when focused
           ),
@@ -32,8 +32,14 @@ Widget Forms(TextEditingController controller, String label) {
 // }
 
 class Button extends StatelessWidget {
+<<<<<<< Updated upstream
   Button(
       {required this.title,
+=======
+  const Button(
+      {super.key,
+      required this.title,
+>>>>>>> Stashed changes
       required this.onPressed,
       required this.backgroundColor,
       required this.foregnColor});

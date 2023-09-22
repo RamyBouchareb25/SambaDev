@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sambadev/Pages/login_student.dart';
+import 'package:sambadev/Pages/student_signIn.dart';
 import 'package:sambadev/global.dart';
 import 'package:sambadev/models/custom_page_route.dart';
 
@@ -66,7 +66,7 @@ class Start extends StatelessWidget {
                         size: size,
                         onTap: () {
                           Navigator.of(context).push(CustomPageRoute(
-                              child: const LoginStudent(),
+                              child: const StudentSignIn(),
                               axis: AxisDirection.right));
                         },
                       ),

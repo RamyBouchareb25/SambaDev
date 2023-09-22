@@ -72,7 +72,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF387DBF)),
         useMaterial3: true,
       ),
-      home: const StudentSignIn(),
+      home: const WidgetTree(),
     );
   }
 }

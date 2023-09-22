@@ -12,20 +12,20 @@ class StudentSignIn extends StatefulWidget {
 class _StudentSignInState extends State<StudentSignIn> {
   @override
   Widget build(BuildContext context) {
-    TextEditingController email=TextEditingController();
-    TextEditingController password=TextEditingController();
- 
+    TextEditingController email = TextEditingController();
+    TextEditingController password = TextEditingController();
+
     final Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         body: Container(
           width: size.width,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("Assets/Background-1.png"),
-              fit: BoxFit.fitWidth
-            ),
+                image: AssetImage("Assets/Background-1.png"),
+                fit: BoxFit.fitWidth),
           ),
+<<<<<<< Updated upstream
           child: SingleChildScrollView(
             child: Column(children: [
               SizedBox(
@@ -38,13 +38,34 @@ class _StudentSignInState extends State<StudentSignIn> {
               ),
           
               Form(
+=======
+          child: Column(children: [
+            const SizedBox(
+              height: 150,
+            ),
+            Image.asset(
+              "Assets/Logo.png",
+              height: 150,
+              width: size.width,
+            ),
+            SingleChildScrollView(
+              child: Form(
+>>>>>>> Stashed changes
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text('Etudiant'),
+                    const Text('Etudiant'),
                     Forms(email, 'email'),
                     Forms(password, 'password'),
-                    Row(children: [Button(title: 'Submit', onPressed: (){}, backgroundColor: primaryColor,foregnColor: Colors.white,)],
+                    Row(
+                      children: [
+                        Button(
+                          title: 'Submit',
+                          onPressed: () {},
+                          backgroundColor: primaryColor,
+                          foregnColor: Colors.white,
+                        )
+                      ],
                     )
                   ],
                 ),
