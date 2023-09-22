@@ -36,7 +36,7 @@ class Etudiant {
   String ville;
   int numero;
   String email;
-  int annee;
+  int semestre;
   int anneeDeBac;
   String filiere;
   double? moyenneGeneral;
@@ -45,8 +45,9 @@ class Etudiant {
   double matricule;
   List<Annoncement>? annoncements;
   List<Note>? notes;
+  bool inscris;
   Etudiant(
-      this.annee,
+      
       this.nom,
       this.prenom,
       this.dateDeNaissance,
@@ -57,6 +58,7 @@ class Etudiant {
       this.ville,
       this.numero,
       this.email,
+      this.semestre,
       this.anneeDeBac,
       this.filiere,
       this.moyenneGeneral,
@@ -64,29 +66,32 @@ class Etudiant {
       this.groupe,
       this.matricule,
       this.annoncements,
-      this.notes);
+      this.notes,
+      this.inscris);
 
   factory Etudiant.fromMap(Map<String, dynamic> map) {
     return Etudiant(
-        map['nom'],
-        map['prenom'],
-        map['dateDeNaissance'],
-        map['lieuDeNaissance'],
-        map['wilaya'],
-        map['adresse'],
-        map['nationalite'],
-        map['ville'],
-        map['numero'],
-        map['email'],
-        map['anneeDeBac'],
-        map['filiere'],
-        map['moyenneGeneral'],
-        map['section'],
-        map['groupe'],
-        map['matricule'],
-        map['annoncements'],
-        map['annee'],
-        map['notes']);
+      map['nom'],
+      map['prenom'],
+      map['dateDeNaissance'],
+      map['lieuDeNaissance'],
+      map['wilaya'],
+      map['adresse'],
+      map['nationalite'],
+      map['ville'],
+      map['numero'],
+      map['email'],
+      map['semestre'],
+      map['anneeDeBac'],
+      map['filiere'],
+      map['moyenneGeneral'],
+      map['section'],
+      map['groupe'],
+      map['matricule'],
+      map['annoncements'],
+      map['notes'],
+      map['inscris'],
+    );
   }
 
   Map<String, dynamic> toMap() {
@@ -101,6 +106,7 @@ class Etudiant {
       'ville': ville,
       'numero': numero,
       'email': email,
+      'semestre':semestre,
       'anneeDeBac': anneeDeBac,
       'filiere': filiere,
       'moyenneGeneral': moyenneGeneral,
@@ -108,7 +114,7 @@ class Etudiant {
       'groupe': groupe,
       'matricule': matricule,
       'annoncements': annoncements,
-      'annee': annee
+      'inscris': inscris
     };
   }
 }

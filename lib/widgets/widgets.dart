@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sambadev/Pages/home.dart';
+import 'package:sambadev/Pages/ressources.dart';
 import 'package:sambadev/global.dart';
 import 'package:sambadev/models/icomoon_icons.dart';
 
@@ -58,6 +59,7 @@ class Button extends StatelessWidget {
   final Function()? onPressed;
   final Color backgroundColor;
   final foregnColor;
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -69,14 +71,15 @@ class Button extends StatelessWidget {
   }
 }
 
-Widget bottomNavBar({required int selectedPage, required BuildContext context}) {
+Widget bottomNavBar(
+    {required int selectedPage, required BuildContext context}) {
   return BottomNavigationBar(
     type: BottomNavigationBarType.fixed,
     backgroundColor: Colors.white,
     selectedItemColor: primaryColor,
     unselectedItemColor: Colors.grey,
     iconSize: 20,
-    items:  [
+    items: [
       BottomNavigationBarItem(
         icon: Icon(Icomoon.Resources),
         label: "Ressources",
@@ -85,10 +88,7 @@ Widget bottomNavBar({required int selectedPage, required BuildContext context}) 
         icon: Icon(Icomoon.Chats),
         label: "Chat",
       ),
-       BottomNavigationBarItem(
-        icon: Icon(Icomoon.News),
-        label: ''
-      ),
+      BottomNavigationBarItem(icon: Icon(Icomoon.News), label: ''),
       BottomNavigationBarItem(
         icon: Icon(Icomoon.Time),
         label: "Emploi",
@@ -108,7 +108,7 @@ Widget bottomNavBar({required int selectedPage, required BuildContext context}) 
           Navigator.pushReplacement(
               context,
               CustomPageRoute(
-                child:  Home(),
+                child: Ressources(),
                 axis: AxisDirection.left,
               ));
           break;
@@ -118,7 +118,7 @@ Widget bottomNavBar({required int selectedPage, required BuildContext context}) 
           Navigator.pushReplacement(
               context,
               CustomPageRoute(
-                child:  Home(),
+                child: Home(),
                 axis: AxisDirection.left,
               ));
           break;
@@ -128,7 +128,7 @@ Widget bottomNavBar({required int selectedPage, required BuildContext context}) 
           Navigator.pushReplacement(
               context,
               CustomPageRoute(
-                child:  Home(),
+                child: Home(),
                 axis: AxisDirection.left,
               ));
           break;
@@ -136,10 +136,10 @@ Widget bottomNavBar({required int selectedPage, required BuildContext context}) 
           // Navigator.popUntil(context, (route) => !route.isCurrent);
           // Navigator.push(context,
           //     MaterialPageRoute(builder: (context) => const SettingsPage()));
-         Navigator.pushReplacement(
+          Navigator.pushReplacement(
               context,
               CustomPageRoute(
-                child:  Home(),
+                child: Home(),
                 axis: AxisDirection.left,
               ));
           break;
@@ -148,73 +148,101 @@ Widget bottomNavBar({required int selectedPage, required BuildContext context}) 
     },
   );
 }
+
 Widget Annoncement(
-    String auteur, String contenu, String heure, int groupe,bool isPressed) {
+    String auteur, String contenu, String heure, int groupe, bool isPressed) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Container(
-      
-      decoration: BoxDecoration(gradient:gradient,
-      borderRadius: BorderRadius.circular(20)
-      ),
+        decoration: BoxDecoration(
+            color: Color.fromRGBO(12, 131, 227, 1),
+            borderRadius: BorderRadius.circular(20)),
         child: Column(
-            children: [
-        Padding(
-          padding: const EdgeInsets.only(top:8),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(width: 10,),
-                  Image(image: AssetImage('Assets/avatar.png')),
-                  SizedBox(width: 5,),
-                  Column(
+                  Row(
                     children: [
-                      Text(auteur),
-
-                      Text(heure),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Image(image: AssetImage('Assets/avatar.png')),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Column(
+                        children: [
+                          Text(
+                            auteur,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          Text(
+                            heure,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
+                  Container(
+                    width: 50,
+                    child: Column(
+                      children: [
+                        Container(
+                            decoration: BoxDecoration(
+                                color: accentColor,
+                                borderRadius: BorderRadiusDirectional.all(
+                                    Radius.circular(50))),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                'G' + groupe.toString(),
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            )),
+                      ],
+                    ),
+                  )
                 ],
               ),
-              Container(
-                width: 50,
-                child: Column(
-                  children: [
-                               Container(                     
-                                decoration: BoxDecoration(
-                                  color: accentColor,
-                                  borderRadius: BorderRadiusDirectional.all(Radius.circular(50))),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text('G'+groupe.toString()),
-                                )),
-                                
-                               ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                contenu,
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.favorite,
+                      color: isPressed ? Colors.red : Colors.grey,
+                    )),
+                Icon(
+                  Icomoon.Comment,
+                  color: Colors.white,
                 ),
-              )
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(contenu),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [IconButton(onPressed: (){
-              
-            }, 
-            icon: Icon(Icons.favorite,color: isPressed? Colors.red :Colors.grey,)),
-           Icon(Icomoon.Comment),
-           Text('Commentaire'),
-           SizedBox(width: 10,)
-        ],)
-            ],
-          )),
+                Text(
+                  'Commentaire',
+                  style: TextStyle(color: Colors.white),
+                ),
+                SizedBox(
+                  width: 10,
+                )
+              ],
+            )
+          ],
+        )),
   );
 }
+
 class CustomPageRoute extends PageRouteBuilder {
   CustomPageRoute({required this.child, required this.axis})
       : super(pageBuilder: (context, animation, secondaryAnimation) => child);
@@ -245,4 +273,35 @@ class CustomPageRoute extends PageRouteBuilder {
 
   @override
   Duration get transitionDuration => const Duration(milliseconds: 250);
+}
+
+Widget moduleButton(List<String> modules) {
+  return GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+      ),
+      itemCount: modules.length,
+      itemBuilder: (BuildContext context, int index) {
+             return GestureDetector(
+              onTap: () {
+                
+              },
+               child: Container(
+                
+                margin: EdgeInsets.all(10),
+                padding: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  
+                  color:Color.fromRGBO(12, 131, 227, 1) ,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Center(
+                  child: Text(
+                    modules[index],
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ),
+                         ),
+             );
+      });
 }
