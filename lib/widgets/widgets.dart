@@ -38,8 +38,8 @@ PreferredSizeWidget appBar({required BuildContext context}) {
       'Assets/Logo-1.png',
       fit: BoxFit.fitHeight, // Set the fit property to control the height
     ),
-    actions: [
-      Icon(Icons.notifications),
+    actions: const [
+      Icon(Icomoon.Bell),
       SizedBox(
         width: 30,
       ),

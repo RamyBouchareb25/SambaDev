@@ -34,7 +34,7 @@ class Etudiant {
   String adresse;
   String nationalite;
   String ville;
-  int numero;
+  BigInt numero;
   String email;
   int semestre;
   int anneeDeBac;
@@ -47,51 +47,47 @@ class Etudiant {
   List<Note>? notes;
   bool inscris;
   Etudiant(
-      
-      this.nom,
-      this.prenom,
-      this.dateDeNaissance,
-      this.lieuDeNaissance,
-      this.wilaya,
-      this.adresse,
-      this.nationalite,
-      this.ville,
-      this.numero,
-      this.email,
-      this.semestre,
-      this.anneeDeBac,
-      this.filiere,
-      this.moyenneGeneral,
-      this.section,
-      this.groupe,
-      this.matricule,
-      this.annoncements,
-      this.notes,
-      this.inscris);
+      {required this.semestre,
+      required this.nom,
+      required this.prenom,
+      required this.dateDeNaissance,
+      required this.lieuDeNaissance,
+      required this.wilaya,
+      required this.adresse,
+      required this.nationalite,
+      required this.ville,
+      required this.numero,
+      required this.email,
+      required this.anneeDeBac,
+      required this.filiere,
+      required this.moyenneGeneral,
+      required this.section,
+      required this.groupe,
+      required this.matricule,
+      required this.annoncements,
+      required this.notes});
 
   factory Etudiant.fromMap(Map<String, dynamic> map) {
     return Etudiant(
-      map['nom'],
-      map['prenom'],
-      map['dateDeNaissance'],
-      map['lieuDeNaissance'],
-      map['wilaya'],
-      map['adresse'],
-      map['nationalite'],
-      map['ville'],
-      map['numero'],
-      map['email'],
-      map['semestre'],
-      map['anneeDeBac'],
-      map['filiere'],
-      map['moyenneGeneral'],
-      map['section'],
-      map['groupe'],
-      map['matricule'],
-      map['annoncements'],
-      map['notes'],
-      map['inscris'],
-    );
+        nom: map['nom'],
+        prenom: map['prenom'],
+        dateDeNaissance: map['dateDeNaissance'],
+        lieuDeNaissance: map['lieuDeNaissance'],
+        wilaya: map['wilaya'],
+        adresse: map['adresse'],
+        nationalite: map['nationalite'],
+        ville: map['ville'],
+        numero: map['numero'],
+        email: map['email'],
+        anneeDeBac: map['anneeDeBac'],
+        filiere: map['filiere'],
+        moyenneGeneral: map['moyenneGeneral'],
+        section: map['section'],
+        groupe: map['groupe'],
+        matricule: map['matricule'],
+        annoncements: map['annoncements'],
+        notes: map['notes'],
+        semestre: map['semestre']);
   }
 
   Map<String, dynamic> toMap() {
@@ -114,7 +110,7 @@ class Etudiant {
       'groupe': groupe,
       'matricule': matricule,
       'annoncements': annoncements,
-      'inscris': inscris
+      'semestre': semestre
     };
   }
 }
