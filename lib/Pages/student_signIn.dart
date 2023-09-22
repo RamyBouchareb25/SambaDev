@@ -26,18 +26,18 @@ class _StudentSignInState extends State<StudentSignIn> {
               fit: BoxFit.fitWidth
             ),
           ),
-          child: Column(children: [
-            SizedBox(
-              height: 150,
-            ),
-            Image.asset(
-              "Assets/Logo.png",
-              height: 150,
-              width: size.width,
-            ),
-
-            SingleChildScrollView(
-              child: Form(
+          child: SingleChildScrollView(
+            child: Column(children: [
+              SizedBox(
+                height: 150,
+              ),
+              Image.asset(
+                "Assets/Logo.png",
+                height: 150,
+                width: size.width,
+              ),
+          
+              Form(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -48,9 +48,9 @@ class _StudentSignInState extends State<StudentSignIn> {
                     )
                   ],
                 ),
-              ),
-            )
-          ]),
+              )
+            ]),
+          ),
         ),
       ),
     );

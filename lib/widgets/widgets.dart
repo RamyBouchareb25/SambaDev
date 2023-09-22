@@ -21,8 +21,22 @@ Widget Forms(TextEditingController controller, String label) {
       ));
 }
 
+// Widget appBar(Size size) {
+//   return Container(
+//     width: size.width,
+//     color: Colors.white,
+//     Row(children: [
+//       Image(image: AssetImage('Asset/Logo-1.png')),
+//     ],)
+//   );
+// }
+
 class Button extends StatelessWidget {
-  Button({required this.title, required this.onPressed,required this.backgroundColor,required this.foregnColor});
+  Button(
+      {required this.title,
+      required this.onPressed,
+      required this.backgroundColor,
+      required this.foregnColor});
   final String title;
   final Function()? onPressed;
   final Color backgroundColor;
@@ -31,8 +45,7 @@ class Button extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        foregroundColor:foregnColor,
-        backgroundColor: backgroundColor),
+          foregroundColor: foregnColor, backgroundColor: backgroundColor),
       onPressed: () {
         onPressed;
       },
