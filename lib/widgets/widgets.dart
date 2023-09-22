@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:sambadev/global.dart';
 
-Widget Forms(TextEditingController controller, String label) {
+Widget forms(
+    {required TextEditingController controller,
+    required String label,
+    required Function() onChanged,
+    required String? Function(String?)? validator}) {
   return Padding(
       padding: const EdgeInsets.all(10.0),
-      child: TextField(
+      child: TextFormField(
+        validator: validator,
+        onChanged: (value) {
+          onChanged();
+        },
         controller: controller,
         decoration: InputDecoration(
           labelText: label,
@@ -47,9 +55,7 @@ class Button extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
           foregroundColor: foregnColor, backgroundColor: backgroundColor),
-      onPressed: () {
-        onPressed;
-      },
+      onPressed: onPressed,
       child: Text(title),
     );
   }
