@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sambadev/Pages/student_signIn.dart';
 import 'package:sambadev/global.dart';
 import 'package:sambadev/models/custom_page_route.dart';
+import 'package:sambadev/models/icomoon_icons.dart';
 
 class Start extends StatelessWidget {
   const Start({super.key});
@@ -16,7 +17,7 @@ class Start extends StatelessWidget {
           decoration: BoxDecoration(
               color: primaryColor, borderRadius: BorderRadius.circular(20)),
           child: const Icon(
-            Icons.person,
+            Icomoon.Parent,
             color: Colors.white,
             size: 50,
           ),

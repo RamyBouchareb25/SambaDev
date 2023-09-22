@@ -30,18 +30,6 @@ class _WidgetTreeState extends State<WidgetTree> with WidgetsBindingObserver {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
           if (snapshot.hasData) {
-            FirebaseFirestore.instance
-                .collection("Users")
-                .where("UserId", isEqualTo: Auth().currentUser!.uid)
-                .get()
-                .then((value) {
-              for (var element in value.docs) {
-                FirebaseFirestore.instance
-                    .collection("Users")
-                    .doc(element.id)
-                    .update({"Status": "online"});
-              }
-            });
             return const Home();
           } else {
             return const Start();
