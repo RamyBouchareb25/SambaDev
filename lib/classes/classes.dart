@@ -45,6 +45,7 @@ class Etudiant {
   double matricule;
   List<Annoncement>? annoncements;
   List<Note>? notes;
+  String uid;
   Etudiant(
       {required this.semestre,
       required this.nom,
@@ -64,10 +65,12 @@ class Etudiant {
       required this.groupe,
       required this.matricule,
       required this.annoncements,
-      required this.notes});
+      required this.notes,
+      required this.uid});
 
   factory Etudiant.fromMap(Map<String, dynamic> map) {
     return Etudiant(
+        uid: map['uid'],
         nom: map['nom'],
         prenom: map['prenom'],
         dateDeNaissance: map['dateDeNaissance'],
@@ -91,6 +94,7 @@ class Etudiant {
 
   Map<String, dynamic> toMap() {
     return {
+      'uid': uid,
       'nom': nom,
       'prenom': prenom,
       'dateDeNaissance': dateDeNaissance,

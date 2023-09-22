@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sambadev/Pages/conversation.dart';
+import 'package:sambadev/models/auth.dart';
 import 'package:sambadev/widgets/widgets.dart';
 
 class Rooms extends StatefulWidget {
@@ -79,12 +80,21 @@ class _RoomsState extends State<Rooms> {
     return Scaffold(
       appBar: appBar(context: context),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+            child: SearchBar(
+              backgroundColor: MaterialStatePropertyAll(Colors.white),
+              trailing: [Icon(Icons.search)],
+              hintText: "Search",
+            ),
+          ),
           horizontalMessages(),
           renderMessages(),
         ],
       ),
+      bottomNavigationBar: bottomNavBar(selectedPage: 2, context: context),
     );
   }
 }

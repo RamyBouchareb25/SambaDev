@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class Conversation extends StatefulWidget {
   const Conversation({super.key});
 
@@ -11,6 +10,8 @@ class Conversation extends StatefulWidget {
 class _ConversationState extends State<Conversation> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      
+    );
   }
 }
