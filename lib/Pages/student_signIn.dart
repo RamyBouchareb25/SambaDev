@@ -35,30 +35,48 @@ class _StudentSignInState extends State<StudentSignIn> {
               width: size.width,
             ),
             SingleChildScrollView(
+                child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Form(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const Text('Etudiant'),
+                    const Text(
+                      'Etudiant',
+                      style: TextStyle(
+                          color: primaryColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 25),
+                    ),
                     Forms(email, 'email'),
                     Forms(password, 'password'),
-                    Row(
-                      children: [
-                        Button(
-                          title: 'Submit',
-                          onPressed: () {},
-                          backgroundColor: primaryColor,
-                          foregnColor: Colors.white,
-                        )
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Button(
+                            title: 'Sign in with google',
+                            onPressed: () {},
+                            backgroundColor: Colors.white,
+                            foregnColor: primaryColor,
+                          ),
+                          Button(
+                            title: 'Submit',
+                            onPressed: () {},
+                            backgroundColor: primaryColor,
+                            foregnColor: Colors.white,
+                          ),
+                        ],
+                      ),
                     )
                   ],
                 ),
-              )
-        )]),
-          ),
+              ),
+            ))
+          ]),
         ),
-      );
-    
+      ),
+    );
   }
 }
