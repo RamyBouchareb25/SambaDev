@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:sambadev/global.dart';
 
@@ -29,15 +30,13 @@ Widget forms(
       ));
 }
 
-// Widget appBar(Size size) {
-//   return Container(
-//     width: size.width,
-//     color: Colors.white,
-//     Row(children: [
-//       Image(image: AssetImage('Asset/Logo-1.png')),
-//     ],)
-//   );
-// }
+PreferredSizeWidget appBar({required BuildContext context}) {
+  return AppBar(actions: [
+      Image(image: AssetImage('Assets/Logo-1.png')),
+      Icon(Icons.notifications),
+      Icon(Icons.person)
+  ],);
+}
 
 class Button extends StatelessWidget {
   const Button(

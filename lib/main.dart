@@ -7,7 +7,6 @@ import 'package:sambadev/widget_tree.dart';
 import 'firebase_options.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:rxdart/rxdart.dart';
-
 Future<void> showNotification(RemoteMessage message) async {
   const NotificationDetails notificationDetails = NotificationDetails(
     android: AndroidNotificationDetails(
