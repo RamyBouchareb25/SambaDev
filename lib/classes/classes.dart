@@ -34,15 +34,15 @@ class Etudiant {
   String adresse;
   String nationalite;
   String ville;
-  BigInt numero;
+  int numero;
   String email;
   int semestre;
   int anneeDeBac;
   String filiere;
   double? moyenneGeneral;
-  Char section;
+  String section;
   int groupe;
-  double matricule;
+  int matricule;
   List<Annoncement>? annoncements;
   List<Note>? notes;
   String uid;
@@ -105,7 +105,7 @@ class Etudiant {
       'ville': ville,
       'numero': numero,
       'email': email,
-      'semestre':semestre,
+      'semestre': semestre,
       'anneeDeBac': anneeDeBac,
       'filiere': filiere,
       'moyenneGeneral': moyenneGeneral,
@@ -113,7 +113,6 @@ class Etudiant {
       'groupe': groupe,
       'matricule': matricule,
       'annoncements': annoncements,
-      'semestre': semestre
     };
   }
 }
@@ -150,7 +149,7 @@ class Teacher {
   String email;
   String numero;
   String? module;
-  List<Char>? sections;
+  List<String>? sections;
   List<ClasseEnseigne> classesEnseignees;
   File cv;
   File diplome;
@@ -198,7 +197,7 @@ class Annoncement {
   List<Commentaire>? commentaires;
   int? jaimes;
   // les cles de filtre
-  Char? section;
+  String? section;
   int? groupe;
 
   Annoncement(this.auteur, this.contenu, this.temps, this.commentaires,
@@ -228,7 +227,7 @@ class Seance {
   String heurDebut;
   String heureFin;
   String prof;
-  Char section;
+  String section;
   int groupe;
   TypeSeance type;
   Seance(this.jour, this.heurDebut, this.heureFin, this.prof, this.section,
@@ -268,7 +267,7 @@ Map<int, List<String>> modulesInfo = {
 
 //la classe etudie
 class ClasseEnseigne {
-  Char section;
+  String section;
   int groupe;
   ClasseEnseigne(this.section, this.groupe);
 }

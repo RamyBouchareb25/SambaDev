@@ -50,107 +50,108 @@ class _StudentSignInState extends State<StudentSignIn> {
     return SafeArea(
       child: Scaffold(
         body: Container(
+          height: size.height,
           width: size.width,
           decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("Assets/Background-1.png"),
-                fit: BoxFit.fitWidth),
+                image: AssetImage("Assets/Background-1.png"), fit: BoxFit.fill),
           ),
-          child: Column(children: [
-            const SizedBox(
-              height: 150,
-            ),
-            Image.asset(
-              "Assets/Logo.png",
-              height: 150,
-              width: size.width,
-            ),
-            SingleChildScrollView(
-                child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Form(
-                key: formkey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    const Text(
-                      'Etudiant',
-                      style: TextStyle(
-                          color: primaryColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25),
-                    ),
-                    forms(
-                        controller: email,
-                        label: 'email',
-                        onChanged: _validateForm,
-                        validator: (value) {
-                          return EmailValidator.validate(value!.trim())
-                              ? null
-                              : "Please enter a valid email";
-                        }),
-                    forms(
-                        controller: password,
-                        label: 'password',
-                        onChanged: _validateForm,
-                        validator: (value) {
-                          return value!.isEmpty
-                              ? "You Must Enter Your Password"
-                              : null;
-                        }),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Button(
-                            title: 'Sign in with google',
-                            onPressed: () {},
-                            backgroundColor: Colors.white,
-                            foregnColor: primaryColor,
-                          ),
-                          Button(
-                            title: 'Submit',
-                            isloading: _isLoading,
-                            onPressed: () {
-                              if (formkey.currentState!.validate()) {
-                                setState(() {
-                                  _isLoading = true;
-                                });
-                                signInWithEmailAndPassword().then((value) {
-                                  if (errorMessage == null) {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const WidgetTree()));
-                                  } else {
-                                    if (kDebugMode) {
-                                      print(errorMessage.toString());
-                                    }
-                                    setState(() {
-                                      _isLoading = false;
-                                    });
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(
-                                            content: Text(errorMessage ??
-                                                "Unknown Error")));
-                                    errorMessage = null;
-                                  }
-                                });
-                              }
-                            },
-                            backgroundColor: primaryColor,
-                            foregnColor: Colors.white,
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
+          child: SingleChildScrollView(
+            child: Column(children: [
+              const SizedBox(
+                height: 150,
               ),
-            ))
-          ]),
+              Image.asset(
+                "Assets/Logo.png",
+                height: 150,
+                width: size.width,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Form(
+                  key: formkey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const Text(
+                        'Etudiant',
+                        style: TextStyle(
+                            color: primaryColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25),
+                      ),
+                      forms(
+                          controller: email,
+                          label: 'email',
+                          onChanged: _validateForm,
+                          validator: (value) {
+                            return EmailValidator.validate(value!.trim())
+                                ? null
+                                : "Please enter a valid email";
+                          }),
+                      forms(
+                          controller: password,
+                          label: 'password',
+                          onChanged: _validateForm,
+                          validator: (value) {
+                            return value!.isEmpty
+                                ? "You Must Enter Your Password"
+                                : null;
+                          }),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Button(
+                              title: 'Sign in with google',
+                              onPressed: () {},
+                              backgroundColor: Colors.white,
+                              foregnColor: primaryColor,
+                            ),
+                            Button(
+                              title: 'Submit',
+                              isloading: _isLoading,
+                              onPressed: () {
+                                if (formkey.currentState!.validate()) {
+                                  setState(() {
+                                    _isLoading = true;
+                                  });
+                                  signInWithEmailAndPassword().then((value) {
+                                    if (errorMessage == null) {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const WidgetTree()));
+                                    } else {
+                                      if (kDebugMode) {
+                                        print(errorMessage.toString());
+                                      }
+                                      setState(() {
+                                        _isLoading = false;
+                                      });
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                              content: Text(errorMessage ??
+                                                  "Unknown Error")));
+                                      errorMessage = null;
+                                    }
+                                  });
+                                }
+                              },
+                              backgroundColor: primaryColor,
+                              foregnColor: Colors.white,
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              )
+            ]),
+          ),
         ),
       ),
     );
