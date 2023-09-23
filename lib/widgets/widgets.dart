@@ -55,11 +55,13 @@ class Button extends StatelessWidget {
       required this.title,
       required this.onPressed,
       required this.backgroundColor,
-      required this.foregnColor});
+      required this.foregnColor,
+      this.isloading});
   final String title;
   final Function()? onPressed;
   final Color backgroundColor;
   final foregnColor;
+  final bool? isloading;
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +69,11 @@ class Button extends StatelessWidget {
       style: ElevatedButton.styleFrom(
           foregroundColor: foregnColor, backgroundColor: backgroundColor),
       onPressed: onPressed,
-      child: Text(title),
+      child: isloading == null || !isloading!
+          ? Text(title)
+          : const CircularProgressIndicator(
+              color: Colors.white,
+            ),
     );
   }
 }
@@ -109,7 +115,7 @@ Widget bottomNavBar(
           Navigator.pushReplacement(
               context,
               CustomPageRoute(
-                child: Ressources(),
+                child: const Ressources(),
                 axis: AxisDirection.left,
               ));
           break;
@@ -259,31 +265,27 @@ class CustomPageRoute extends PageRouteBuilder {
 
 Widget moduleButton(List<String> modules) {
   return GridView.builder(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
       ),
       itemCount: modules.length,
       itemBuilder: (BuildContext context, int index) {
-             return GestureDetector(
-              onTap: () {
-                
-              },
-               child: Container(
-                
-                margin: EdgeInsets.all(10),
-                padding: EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  
-                  color:Color.fromRGBO(12, 131, 227, 1) ,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Center(
-                  child: Text(
-                    modules[index],
-                    style: TextStyle(fontSize: 18),
-                  ),
-                ),
-                         ),
-             );
+        return GestureDetector(
+          onTap: () {},
+          child: Container(
+            margin: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: const Color.fromRGBO(12, 131, 227, 1),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Center(
+              child: Text(
+                modules[index],
+                style: const TextStyle(fontSize: 18),
+              ),
+            ),
+          ),
+        );
       });
 }

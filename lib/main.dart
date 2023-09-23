@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:sambadev/Pages/rooms.dart';
+import 'package:sambadev/Pages/start.dart';
 import 'package:sambadev/models/manager.dart';
 import 'package:sambadev/widget_tree.dart';
 import 'firebase_options.dart';
@@ -34,7 +35,13 @@ Future<void> main() async {
   );
   FirebaseMessaging message = FirebaseMessaging.instance;
   Manager manager = Manager();
-  await message.getToken().then((value) => manager.token = value);
+  try {
+    await message.getToken().then((value) => manager.token = value);
+  } catch (e) {
+    if (kDebugMode) {
+      print(e);
+    }
+  }
 
   NotificationSettings settings = await message.requestPermission(
       alert: true,
@@ -72,7 +79,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF387DBF)),
         useMaterial3: true,
       ),
-      home: const Rooms(),
+      home: const Start(),
     );
   }
 }

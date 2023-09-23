@@ -1,5 +1,6 @@
 import 'package:sambadev/Pages/home.dart';
 import 'package:sambadev/Pages/start.dart';
+import 'package:sambadev/classes/classes.dart';
 import 'package:sambadev/models/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,21 @@ class _WidgetTreeState extends State<WidgetTree> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
+    if (Auth().currentUser != null) {
+      FirebaseFirestore.instance
+          .collection("Etudiants")
+          .where("uid", isEqualTo: Auth().currentUser!.uid)
+          .get()
+          .then((value) {
+        Etudiant? etudiant;
+        if (value.docs.isNotEmpty) {
+          for (var element in value.docs) {
+            etudiant = Etudiant.fromMap(element.data());
+          }
+        }
+        Auth.student = etudiant;
+      });
+    }
     return StreamBuilder(
       stream: Auth().authStateChanges,
       builder: (context, snapshot) {
