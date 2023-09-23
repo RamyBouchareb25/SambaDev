@@ -35,16 +35,14 @@ Widget forms(
 
 PreferredSizeWidget appBar({required BuildContext context}) {
   return AppBar(
-    leading: Image.asset(
-      'Assets/Logo-1.png',
-      fit: BoxFit.fitHeight, // Set the fit property to control the height
-    ),
+    
     actions: const [
-      Icon(Icomoon.Bell),
+     Image(image: AssetImage('Assets/Logo-1.png'),),
+     Icon(Icons.person),
       SizedBox(
         width: 30,
       ),
-      Icon(Icons.person)
+      
     ],
   );
 }

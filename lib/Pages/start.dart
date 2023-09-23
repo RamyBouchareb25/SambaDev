@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sambadev/Pages/student_signIn.dart';
+import 'package:sambadev/Pages/teacherForm.dart';
 import 'package:sambadev/global.dart';
 import 'package:sambadev/models/custom_page_route.dart';
 import 'package:sambadev/models/icomoon_icons.dart';
@@ -79,7 +80,11 @@ class Start extends StatelessWidget {
                         icon: Icomoon.Teacher,
                         title: "Teacher",
                         size: size,
-                        onTap: () {},
+                        onTap: () {
+                           Navigator.of(context).push(CustomPageRoute(
+                              child: const TeacherForm(),
+                              axis: AxisDirection.right));
+                        },
                       ),
                       button(
                         icon: Icons.person,
