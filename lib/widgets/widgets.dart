@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:sambadev/Pages/cours.dart';
+import 'package:sambadev/Pages/emploie_page.dart';
 import 'package:sambadev/Pages/home.dart';
+import 'package:sambadev/Pages/profile.dart';
 import 'package:sambadev/Pages/rooms.dart';
 import 'package:sambadev/Pages/ressources.dart';
 import 'package:sambadev/global.dart';
+import 'package:sambadev/models/auth.dart';
 import 'package:sambadev/models/icomoon_icons.dart';
 
 Widget forms(
@@ -39,12 +43,37 @@ PreferredSizeWidget appBar({required BuildContext context}) {
       'Assets/Logo-1.png',
       fit: BoxFit.fitHeight, // Set the fit property to control the height
     ),
-    actions: const [
-      Icon(Icomoon.Bell),
-      SizedBox(
+    actions: [
+      const Icon(
+        Icomoon.Bell,
+        color: primaryColor,
+      ),
+      const SizedBox(
         width: 30,
       ),
-      Icon(Icons.person)
+      PopupMenuButton(
+        itemBuilder: (context) {
+          return [
+            PopupMenuItem(
+              child: TextButton(
+                onPressed: () {
+                  Auth().signOut();
+                },
+                child: const Text('Logout'),
+              ),
+            )
+          ];
+        },
+        child: const Hero(
+          tag: "Profile",
+          child: CircleAvatar(
+            backgroundImage: AssetImage('Assets/avatar.png'),
+          ),
+        ),
+      ),
+      const SizedBox(
+        width: 10,
+      ),
     ],
   );
 }
@@ -78,6 +107,25 @@ class Button extends StatelessWidget {
   }
 }
 
+Widget title({required String path}) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(vertical: 10),
+    child: Row(
+      children: [
+        const Icon(
+          Icons.keyboard_arrow_right,
+          color: primaryColor,
+        ),
+        Text(
+          path,
+          style: const TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 20, color: primaryColor),
+        )
+      ],
+    ),
+  );
+}
+
 Widget bottomNavBar(
     {required int selectedPage, required BuildContext context}) {
   return BottomNavigationBar(
@@ -101,7 +149,7 @@ Widget bottomNavBar(
         label: "Emploi",
       ),
       BottomNavigationBarItem(
-        icon: Icon(Icomoon.Person),
+        icon: Icon(Icons.person),
         label: "Profile",
       ),
     ],
@@ -146,7 +194,18 @@ Widget bottomNavBar(
           Navigator.pushReplacement(
               context,
               CustomPageRoute(
-                child: const Home(),
+                child: const EmploiePage(),
+                axis: AxisDirection.left,
+              ));
+          break;
+        case 4:
+          // Navigator.popUntil(context, (route) => !route.isCurrent);
+          // Navigator.push(context,
+          //     MaterialPageRoute(builder: (context) => const SettingsPage()));
+          Navigator.pushReplacement(
+              context,
+              CustomPageRoute(
+                child: const Profile(),
                 axis: AxisDirection.left,
               ));
           break;
@@ -271,7 +330,14 @@ Widget moduleButton(List<String> modules) {
       itemCount: modules.length,
       itemBuilder: (BuildContext context, int index) {
         return GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+                context,
+                CustomPageRoute(
+                  child: Cours(module: modules[index]),
+                  axis: AxisDirection.right,
+                ));
+          },
           child: Container(
             margin: const EdgeInsets.all(10),
             padding: const EdgeInsets.all(20),

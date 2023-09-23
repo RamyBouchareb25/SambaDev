@@ -12,6 +12,8 @@ class Icomoon {
 
   static const String _fontFamily = 'icomoon';
 
+  static const IconData Student = IconData(0xe918, fontFamily: _fontFamily);
+  static const IconData Teacher1 = IconData(0xe919, fontFamily: _fontFamily);
   static const IconData Bac = IconData(0xe900, fontFamily: _fontFamily);
   static const IconData Bell = IconData(0xe901, fontFamily: _fontFamily);
   static const IconData Cadenas = IconData(0xe902, fontFamily: _fontFamily);
