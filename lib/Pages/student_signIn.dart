@@ -128,7 +128,7 @@ class _StudentSignInState extends State<StudentSignIn> {
                                           isEqualTo: Auth().currentUser!.uid)
                                       .get()
                                       .then((value) {
-                                    var etudiant;
+                                    Etudiant? etudiant;
                                     if (value.docs.isNotEmpty) {
                                       for (var element in value.docs) {
                                         etudiant =

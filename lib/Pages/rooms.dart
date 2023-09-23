@@ -94,7 +94,7 @@ class _RoomsState extends State<Rooms> {
           renderMessages(),
         ],
       ),
-      bottomNavigationBar: bottomNavBar(selectedPage: 2, context: context),
+      bottomNavigationBar: bottomNavBar(selectedPage: 1, context: context),
     );
   }
 }

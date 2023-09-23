@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sambadev/Pages/home.dart';
+import 'package:sambadev/Pages/rooms.dart';
 import 'package:sambadev/Pages/ressources.dart';
 import 'package:sambadev/global.dart';
 import 'package:sambadev/models/icomoon_icons.dart';
@@ -79,7 +80,7 @@ Widget bottomNavBar(
     selectedItemColor: primaryColor,
     unselectedItemColor: Colors.grey,
     iconSize: 20,
-    items: [
+    items: const [
       BottomNavigationBarItem(
         icon: Icon(Icomoon.Resources),
         label: "Ressources",
@@ -118,7 +119,7 @@ Widget bottomNavBar(
           Navigator.pushReplacement(
               context,
               CustomPageRoute(
-                child: Home(),
+                child: const Rooms(),
                 axis: AxisDirection.left,
               ));
           break;
@@ -128,7 +129,7 @@ Widget bottomNavBar(
           Navigator.pushReplacement(
               context,
               CustomPageRoute(
-                child: Home(),
+                child: const Home(),
                 axis: AxisDirection.left,
               ));
           break;
@@ -139,7 +140,7 @@ Widget bottomNavBar(
           Navigator.pushReplacement(
               context,
               CustomPageRoute(
-                child: Home(),
+                child: const Home(),
                 axis: AxisDirection.left,
               ));
           break;
@@ -155,8 +156,7 @@ Widget Annoncement(
     padding: const EdgeInsets.all(8.0),
     child: Container(
         decoration: BoxDecoration(
-            color: Color.fromRGBO(12, 131, 227, 1),
-            borderRadius: BorderRadius.circular(20)),
+            gradient: gradient, borderRadius: BorderRadius.circular(20)),
         child: Column(
           children: [
             Padding(
@@ -166,42 +166,33 @@ Widget Annoncement(
                 children: [
                   Row(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
-                      Image(image: AssetImage('Assets/avatar.png')),
-                      SizedBox(
+                      const Image(image: AssetImage('Assets/avatar.png')),
+                      const SizedBox(
                         width: 5,
                       ),
                       Column(
                         children: [
-                          Text(
-                            auteur,
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          Text(
-                            heure,
-                            style: TextStyle(color: Colors.white),
-                          ),
+                          Text(auteur),
+                          Text(heure),
                         ],
                       ),
                     ],
                   ),
-                  Container(
+                  SizedBox(
                     width: 50,
                     child: Column(
                       children: [
                         Container(
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 color: accentColor,
                                 borderRadius: BorderRadiusDirectional.all(
                                     Radius.circular(50))),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                'G' + groupe.toString(),
-                                style: TextStyle(color: Colors.white),
-                              ),
+                              child: Text('G$groupe'),
                             )),
                       ],
                     ),
@@ -211,10 +202,7 @@ Widget Annoncement(
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(
-                contenu,
-                style: TextStyle(color: Colors.white),
-              ),
+              child: Text(contenu),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -225,15 +213,9 @@ Widget Annoncement(
                       Icons.favorite,
                       color: isPressed ? Colors.red : Colors.grey,
                     )),
-                Icon(
-                  Icomoon.Comment,
-                  color: Colors.white,
-                ),
-                Text(
-                  'Commentaire',
-                  style: TextStyle(color: Colors.white),
-                ),
-                SizedBox(
+                const Icon(Icomoon.Comment),
+                const Text('Commentaire'),
+                const SizedBox(
                   width: 10,
                 )
               ],
