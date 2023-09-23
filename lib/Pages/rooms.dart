@@ -79,20 +79,29 @@ class _RoomsState extends State<Rooms> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(context: context),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-            child: SearchBar(
-              backgroundColor: MaterialStatePropertyAll(Colors.white),
-              trailing: [Icon(Icons.search)],
-              hintText: "Search",
+      body: Container(
+        decoration: const BoxDecoration(
+          color: Color.fromRGBO(56, 125, 191, 0.25),
+          image: DecorationImage(
+              image: AssetImage("Assets/Background-2.png"),
+              fit: BoxFit.fitWidth),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            title(path: "chats"),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+              child: SearchBar(
+                backgroundColor: MaterialStatePropertyAll(Colors.white),
+                trailing: [Icon(Icons.search)],
+                hintText: "Search",
+              ),
             ),
-          ),
-          horizontalMessages(),
-          renderMessages(),
-        ],
+            horizontalMessages(),
+            renderMessages(),
+          ],
+        ),
       ),
       bottomNavigationBar: bottomNavBar(selectedPage: 1, context: context),
     );

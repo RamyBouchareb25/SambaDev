@@ -24,6 +24,7 @@ class _HomeState extends State<Home> {
         ),
         child: Column(
           children: [
+            title(path: "Announcements"),
             Annoncement(
                 'Rami',
                 'En raison de circonstances exceptionnelles, notre cours se déroulera en ligne cette fois-ci. le cour sera le 24 novembre a 15:00',

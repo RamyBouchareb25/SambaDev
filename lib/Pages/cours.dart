@@ -1,23 +1,19 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:sambadev/classes/classes.dart';
-import 'package:sambadev/models/auth.dart';
 import 'package:sambadev/widgets/widgets.dart';
 
-class Ressources extends StatefulWidget {
-  const Ressources({super.key});
+class Cours extends StatefulWidget {
+  const Cours({super.key, required this.module});
+  final String module;
 
   @override
-  State<Ressources> createState() => _RessourcesState();
+  State<Cours> createState() => _CoursState();
 }
 
-class _RessourcesState extends State<Ressources> {
+class _CoursState extends State<Cours> {
   @override
   Widget build(BuildContext context) {
-    BuildContext ctx = context;
-    return SafeArea(
-        child: Scaffold(
-      appBar: appBar(context: ctx),
+    return Scaffold(
+      appBar: appBar(context: context),
       body: Container(
           decoration: const BoxDecoration(
             color: Color.fromRGBO(56, 125, 191, 0.25),
@@ -27,12 +23,10 @@ class _RessourcesState extends State<Ressources> {
           ),
           child: Column(
             children: [
-              title(path: "Ressources"),
-              Expanded(
-                  child: moduleButton(modulesInfo[Auth.student!.semestre]!)),
+              title(path: "Resources/${widget.module}"),
             ],
           )),
       bottomNavigationBar: bottomNavBar(selectedPage: 0, context: context),
-    ));
+    );
   }
 }

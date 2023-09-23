@@ -67,7 +67,7 @@ class Start extends StatelessWidget {
                     crossAxisCount: 2,
                     children: [
                       button(
-                        icon: Icomoon.Student_Male,
+                        icon: Icomoon.Student,
                         title: "Student",
                         size: size,
                         onTap: () {
@@ -77,7 +77,7 @@ class Start extends StatelessWidget {
                         },
                       ),
                       button(
-                        icon: Icomoon.Teacher,
+                        icon: Icomoon.Teacher1,
                         title: "Teacher",
                         size: size,
                         onTap: () {
