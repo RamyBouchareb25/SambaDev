@@ -134,21 +134,32 @@ Widget bottomNavBar(
     selectedItemColor: primaryColor,
     unselectedItemColor: Colors.grey,
     iconSize: 20,
-    items: const [
-      BottomNavigationBarItem(
+    items: [
+      const BottomNavigationBarItem(
         icon: Icon(Icomoon.Resources),
         label: "Ressources",
       ),
-      BottomNavigationBarItem(
+      const BottomNavigationBarItem(
         icon: Icon(Icomoon.Chats),
         label: "Chat",
       ),
-      BottomNavigationBarItem(icon: Icon(Icomoon.News), label: ''),
       BottomNavigationBarItem(
+          icon: Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                  color: const Color(0xFF539DF3),
+                  borderRadius: BorderRadius.circular(50)),
+              child: const Icon(
+                Icomoon.News,
+                color: Colors.white,
+              )),
+          label: ''),
+      const BottomNavigationBarItem(
         icon: Icon(Icomoon.Time),
         label: "Emploi",
       ),
-      BottomNavigationBarItem(
+      const BottomNavigationBarItem(
         icon: Icon(Icons.person),
         label: "Profile",
       ),
